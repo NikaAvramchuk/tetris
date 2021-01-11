@@ -5,7 +5,12 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 
-
+/**
+ * Each test from this class will be performed for each Block type provided in the {@link BlockTestFactory}.
+ *
+ * @author Nika Avramchuk
+ * @see BlockTestFactory
+ */
 @Test(groups = "Block")
 public class BlockTest {
     private final Block childBlock;
@@ -18,7 +23,6 @@ public class BlockTest {
         this.dotsInBlock = dotsInBlock;
         this.emptySpacesInBlock = emptySpacesInBlock;
     }
-
 
     @Test
     public void shouldCreateBlockWithProperDimensions() {
