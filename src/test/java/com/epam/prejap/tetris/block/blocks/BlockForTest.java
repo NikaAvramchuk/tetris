@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BlockForTest {
-    final Object [] dotsInIBlock;
-    final Object [] emptySpacesInIBlock;
+    final Object[] dotsInIBlock;
+    final Object[] emptySpacesInIBlock;
+    final byte[][] image;
 
     public BlockForTest(byte[][] image) {
+        this.image = image;
         dotsInIBlock = getArrayWithDotsOrEmptySpaces(1, image);
         emptySpacesInIBlock = getArrayWithDotsOrEmptySpaces(0, image);
-
     }
 
     private Object[] getArrayWithDotsOrEmptySpaces(int value, byte[][] image) {
@@ -28,6 +29,12 @@ public class BlockForTest {
         return dotsInIBlock;
     }
 
-    public Object[] emptySpaces() { return emptySpacesInIBlock;
+    public Object[] emptySpaces() {
+        return emptySpacesInIBlock;
+    }
+
+    public byte[][] getImage () {
+        return image;
     }
 }
+
