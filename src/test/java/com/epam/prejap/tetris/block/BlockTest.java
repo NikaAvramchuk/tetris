@@ -1,5 +1,6 @@
 package com.epam.prejap.tetris.block;
 
+import com.epam.prejap.tetris.block.blocks.BlockForTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -14,20 +15,22 @@ import static org.testng.Assert.assertEquals;
 @Test(groups = "Block")
 public class BlockTest {
     private final Block childBlock;
-    private final Object[][] dotsInBlock;
-    private Object[][] emptySpacesInBlock;
+    private final BlockForTest blockForTest;
+    private final Object[] dotsInBlock;
+    private final Object[] emptySpacesInBlock;
 
 
-    public BlockTest(Block childBlock, Object[][] dotsInBlock, Object[][] emptySpacesInBlock) {
+    public BlockTest(Block childBlock, BlockForTest blockForTest) {
         this.childBlock = childBlock;
-        this.dotsInBlock = dotsInBlock;
-        this.emptySpacesInBlock = emptySpacesInBlock;
+        this.blockForTest = blockForTest;
+        dotsInBlock = blockForTest.dots();
+        emptySpacesInBlock = blockForTest.emptySpaces();
     }
 
     @Test
     public void shouldCreateBlockWithProperDimensions() {
         //given
-        byte[][] expectedImage = childBlock.image;
+        byte[][] expectedImage = blockForTest.getImage();
 
         //when
         int actualRows = childBlock.rows;
@@ -52,16 +55,13 @@ public class BlockTest {
 
     @Test(dataProvider = "emptySpacesInBlock")
     public void shallCreateLBlockWithCorrectEmptySpaces(int row, int col) {
-        if(!(row==-1 && col==-1)) {
-            //given
-            int emptyMark = 0;
+        int emptyMark = 0;
 
-            //when
-            byte actualEmptySpace = childBlock.dotAt(row, col);
+        //when
+        byte actualEmptySpace = childBlock.dotAt(row, col);
 
-            //then
-            assertEquals(actualEmptySpace, emptyMark, String.format("Should created %s with correct empty spaces, but did not", childBlock.getClass().getSimpleName()));
-        }
+        //then
+        assertEquals(actualEmptySpace, emptyMark, String.format("Should created %s with correct empty spaces, but did not", childBlock.getClass().getSimpleName()));
     }
 
 
