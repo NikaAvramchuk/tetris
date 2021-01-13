@@ -16,36 +16,30 @@ import static org.testng.Assert.assertEquals;
 public class BlockTest {
     private final Block childBlock;
     private final BlockForTest blockForTest;
-    private final Object[] dotsInBlock;
-    private final Object[] emptySpacesInBlock;
 
 
     public BlockTest(Block childBlock, BlockForTest blockForTest) {
         this.childBlock = childBlock;
         this.blockForTest = blockForTest;
-        dotsInBlock = blockForTest.dots();
-        emptySpacesInBlock = blockForTest.emptySpaces();
     }
 
     @Test
     public void shouldCreateBlockWithProperDimensions() {
         //given
-        byte[][] expectedImage = blockForTest.getImage();
+        int expectedRows = blockForTest.rows();
+        int expectedColumns = blockForTest.cols();
 
         //when
         int actualRows = childBlock.rows;
         int actualColumns = childBlock.cols;
 
         //then
-        assertEquals(actualRows, expectedImage.length, String.format("The expected number of rows for %s should be %d, but was %d%n", childBlock.getClass().getSimpleName(), expectedImage.length, actualRows));
-        assertEquals(actualColumns, expectedImage[0].length, String.format("The expected number of columns for %s should be %d, but was %d", childBlock.getClass().getSimpleName(), expectedImage[0].length, actualColumns));
+        assertEquals(actualRows, expectedRows, String.format("The expected number of rows for %s should be %d, but was %d%n", childBlock.getClass().getSimpleName(), expectedRows, actualRows));
+        assertEquals(actualColumns, expectedColumns, String.format("The expected number of columns for %s should be %d, but was %d", childBlock.getClass().getSimpleName(), expectedColumns, actualColumns));
     }
 
-    @Test(dataProvider = "dotsInBlock")
-    public void shouldCreateBlockWithProperDots(int row, int col) {
-        //given
-        byte expectedValue = 1;
-
+    @Test(dataProvider = "blockPoints", dependsOnMethods = "testDataProviders")
+    public void shouldCreateBlockWithProperDots(int row, int col, int expectedValue) {
         //when
         byte actualValue = childBlock.dotAt(row, col);
 
@@ -53,26 +47,24 @@ public class BlockTest {
         assertEquals(actualValue, expectedValue, String.format("Should created %s with correct shaped dots, but did not", childBlock.getClass().getSimpleName()));
     }
 
-    @Test(dataProvider = "emptySpacesInBlock")
-    public void shallCreateLBlockWithCorrectEmptySpaces(int row, int col) {
-        int emptyMark = 0;
+
+    @DataProvider()
+    public Object[] blockPoints() {
+        return blockForTest.getCoordinates();
+    }
+
+    @Test()
+    public void testDataProviders() {
+        //given
+        int expectedValue = blockForTest.cols()*blockForTest.rows();
 
         //when
-        byte actualEmptySpace = childBlock.dotAt(row, col);
+        int actualValue = blockForTest.getCoordinates().length;
 
         //then
-        assertEquals(actualEmptySpace, emptyMark, String.format("Should created %s with correct empty spaces, but did not", childBlock.getClass().getSimpleName()));
+        assertEquals(actualValue, expectedValue, String.format("Should created %s with correct array of points, but did not", blockForTest.getClass().getSimpleName()));
     }
 
 
-    @DataProvider()
-    public Object[] dotsInBlock() {
-        return dotsInBlock;
-    }
-
-    @DataProvider()
-    public Object[] emptySpacesInBlock() {
-        return emptySpacesInBlock;
-    }
 
 }

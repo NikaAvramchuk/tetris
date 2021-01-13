@@ -1,6 +1,7 @@
 package com.epam.prejap.tetris.block;
 
 import com.epam.prejap.tetris.block.blocks.*;
+import com.epam.prejap.tetris.block.blocks.SBlockTest;
 import org.testng.annotations.Factory;
 
 /**
@@ -9,8 +10,7 @@ import org.testng.annotations.Factory;
  *
  * In order to add tests for another implementation of {@link Block}, you need to
  * 1) create YourBlockTest that extends {@link BlockForTest} in com.epam.prejap.tetris.block/
- * 3) add image of your block as variable
- * 4) add new instance of BlockTest to {@link #factoryMethod()} as in example below:
+ * 2) add new instance of BlockTest to {@link #factoryMethod()} as in example below:
  *      {@code new BlockTest(<new_block_subclass>, <new_block_test_subclass>)}
  *
  * @author Nika Avramchuk
@@ -25,7 +25,8 @@ public class BlockTestFactory {
                 new BlockTest(new IBlock(), new IBlockTest()),
                 new BlockTest(new LBlock(), new LBlockTest()),
                 new BlockTest(new ZBlock(), new ZBlockTest()),
-                new BlockTest(new JBlock(), new JBlockTest())
+                new BlockTest(new JBlock(), new JBlockTest()),
+                new BlockTest(new SBlock(), new SBlockTest())
         };
     }
 
