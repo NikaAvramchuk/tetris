@@ -1,40 +1,27 @@
 package com.epam.prejap.tetris.block.blocks;
 
-import java.util.ArrayList;
-import java.util.List;
+public abstract class BlockForTest {
+    final Object[][] coordinates;
+    final int rows;
+    final int cols;
 
-public class BlockForTest {
-    final Object[] dotsInIBlock;
-    final Object[] emptySpacesInIBlock;
-    final byte[][] image;
-
-    public BlockForTest(byte[][] image) {
-        this.image = image;
-        dotsInIBlock = getArrayWithDotsOrEmptySpaces(1, image);
-        emptySpacesInIBlock = getArrayWithDotsOrEmptySpaces(0, image);
+    public BlockForTest(Object[][] points, int rows, int cols) {
+        this.coordinates = points;
+        this.rows = rows;
+        this.cols = cols;
     }
 
-    private Object[] getArrayWithDotsOrEmptySpaces(int value, byte[][] image) {
-        List<Object[]> listOfFoundValueRepetitions = new ArrayList<>();
-        for (int i = 0; i < image.length; i++) {
-            for (int j = 0; j < image[i].length; j++) {
-                if (image[i][j] == value)
-                    listOfFoundValueRepetitions.add(new Object[]{i, j});
-            }
-        }
-        return listOfFoundValueRepetitions.toArray(new Object[listOfFoundValueRepetitions.size()][]);
+    public Object[][] getCoordinates() {
+        return coordinates;
+}
+
+    public int rows() {
+        return rows;
     }
 
-    public Object[] dots() {
-        return dotsInIBlock;
+    public int cols() {
+        return cols;
     }
 
-    public Object[] emptySpaces() {
-        return emptySpacesInIBlock;
-    }
-
-    public byte[][] getImage () {
-        return image;
-    }
 }
 
