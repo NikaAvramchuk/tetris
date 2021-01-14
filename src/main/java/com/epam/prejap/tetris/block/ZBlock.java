@@ -16,6 +16,6 @@ final class ZBlock extends Block {
     };
 
     ZBlock() {
-        super(IMAGE);
+        super(IMAGE, Color.CYAN);
     }
 }
