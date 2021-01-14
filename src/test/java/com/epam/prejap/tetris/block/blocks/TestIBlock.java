@@ -1,7 +1,5 @@
 package com.epam.prejap.tetris.block.blocks;
 
-import com.epam.prejap.tetris.block.Block;
-
 /**
  * I-shaped block implementation of the {@link BlockForTest} abstraction class.
 
@@ -12,8 +10,8 @@ import com.epam.prejap.tetris.block.Block;
  * @see BlockForTest
  */
 public class IBlockTest extends BlockForTest {
-    private static final int rows = 4;
-    private static final int cols = 1;
+    private static final int ROWS = 4;
+    private static final int COLS = 1;
 
     private static final Object[][] blockCoordinates = {
             {0, 0, 1},
@@ -23,7 +21,7 @@ public class IBlockTest extends BlockForTest {
     };
 
     public IBlockTest() {
-        super(blockCoordinates, rows, cols);
+        super(blockCoordinates, ROWS, COLS);
     }
 
 }

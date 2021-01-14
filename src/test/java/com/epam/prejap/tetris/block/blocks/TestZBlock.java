@@ -10,8 +10,8 @@ package com.epam.prejap.tetris.block.blocks;
  * @see BlockForTest
  */
 public class ZBlockTest extends BlockForTest {
-    private static final int rows = 2;
-    private static final int cols = 3;
+    private static final int ROWS = 2;
+    private static final int COLS = 3;
 
     private static final Object[][] blockCoordinates = {
             {0, 0, 1},
@@ -23,7 +23,7 @@ public class ZBlockTest extends BlockForTest {
     };
 
     public ZBlockTest() {
-        super(blockCoordinates, rows, cols);
+        super(blockCoordinates, ROWS, COLS);
     }
 
 }

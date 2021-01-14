@@ -1,6 +1,6 @@
 package com.epam.prejap.tetris.block;
 
-import com.epam.prejap.tetris.block.blocks.BlockForTest;
+import com.epam.prejap.tetris.block.blocks.TestBlock;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -12,22 +12,23 @@ import static org.testng.Assert.assertEquals;
  * @author Nika Avramchuk
  * @see BlockTestFactory
  */
-@Test(groups = "Block")
+@Test(groups = "BlockShape")
 public class BlockTest {
     private final Block childBlock;
-    private final BlockForTest blockForTest;
+    private final TestBlock testBlock;
 
 
-    public BlockTest(Block childBlock, BlockForTest blockForTest) {
+    public BlockTest(Block childBlock, TestBlock testBlock) {
         this.childBlock = childBlock;
-        this.blockForTest = blockForTest;
+        this.testBlock = testBlock;
     }
+
 
     @Test
     public void shouldCreateBlockWithProperDimensions() {
         //given
-        int expectedRows = blockForTest.rows();
-        int expectedColumns = blockForTest.cols();
+        int expectedRows = testBlock.rows();
+        int expectedColumns = testBlock.cols();
 
         //when
         int actualRows = childBlock.rows;
@@ -47,22 +48,25 @@ public class BlockTest {
         assertEquals(actualValue, expectedValue, String.format("Should created %s with correct shaped dots, but did not", childBlock.getClass().getSimpleName()));
     }
 
-
     @DataProvider()
     public Object[] blockPoints() {
-        return blockForTest.getCoordinates();
+        return testBlock.getCoordinates();
     }
 
+    /**
+     * Taking into account that all subsequent tests depend on data providers {@link TestBlock},
+     * this method tests the correctness of the created coordinates.
+     */
     @Test()
     public void testDataProviders() {
         //given
-        int expectedValue = blockForTest.cols()*blockForTest.rows();
+        int expectedValue = testBlock.cols()* testBlock.rows();
 
         //when
-        int actualValue = blockForTest.getCoordinates().length;
+        int actualValue = testBlock.getCoordinates().length;
 
         //then
-        assertEquals(actualValue, expectedValue, String.format("Should created %s with correct array of points, but did not", blockForTest.getClass().getSimpleName()));
+        assertEquals(actualValue, expectedValue, String.format("Should created %s with correct array of points, but did not", testBlock.getClass().getSimpleName()));
     }
 
 
