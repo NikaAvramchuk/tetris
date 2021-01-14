@@ -1,15 +1,15 @@
 package com.epam.prejap.tetris.block.blocks;
 
 /**
- * I-shaped block implementation of the {@link BlockForTest} abstraction class.
+ * I-shaped block implementation of the {@link TestBlock} abstraction class.
 
  * @implNote This class implements static 2d array which stores information about IBlock coordinates (1 and 2 columns) and
  * the required value of the variable at these coordinates (3 column).
  *
  * @author Nika Avramchuk
- * @see BlockForTest
+ * @see TestBlock
  */
-public class IBlockTest extends BlockForTest {
+public class TestIBlock extends TestBlock {
     private static final int ROWS = 4;
     private static final int COLS = 1;
 
@@ -20,7 +20,7 @@ public class IBlockTest extends BlockForTest {
             {3, 0, 1},
     };
 
-    public IBlockTest() {
+    public TestIBlock() {
         super(blockCoordinates, ROWS, COLS);
     }
 

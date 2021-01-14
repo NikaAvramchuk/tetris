@@ -1,11 +1,11 @@
 package com.epam.prejap.tetris.block.blocks;
 
-public abstract class BlockForTest {
+public abstract class TestBlock {
     final Object[][] coordinates;
     final int rows;
     final int cols;
 
-    public BlockForTest(Object[][] points, int rows, int cols) {
+    public TestBlock(Object[][] points, int rows, int cols) {
         this.coordinates = points;
         this.rows = rows;
         this.cols = cols;
